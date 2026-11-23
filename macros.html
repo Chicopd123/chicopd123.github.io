@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.className+=" js"</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Macros | Chico PD</title>
+<meta name="description" content="Every Chico PD macro with one-tap copy: roleplay actions, radio codes and violations.">
+<meta name="theme-color" content="#070b16">
+<link rel="icon" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Chico PD">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Chico PD">
+<meta property="og:title" content="Macros | Chico PD">
+<meta property="og:description" content="Every Chico PD macro with one-tap copy: roleplay actions, radio codes and violations.">
+<meta property="og:url" content="https://chico-pd.netlify.app/macros.html">
+<meta property="og:image" content="https://chico-pd.netlify.app/images/og.jpg">
+<meta property="og:image:width" content="484">
+<meta property="og:image:height" content="255">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="lightbar"></div>
+  <div class="wrap header-row">
+    <a class="brand" href="index.html"><img src="images/crops/badge.jpg" alt="" width="42" height="42">Chico PD</a>
+    <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="burger" aria-hidden="true"></span>Menu</button>
+    <nav id="site-nav" aria-label="Main"><a href="index.html">Home</a><a href="macros.html" aria-current="page">Macros</a><a href="violations.html">Violations</a><a href="guides.html">Guides</a><a href="rules.html">PD Rules</a><a href="new-officers.html">New Officers</a><a href="rp-videos.html">RP Videos</a><a href="gallery.html">Pictures</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="wrap page-head tone-flobby"><p class="eyebrow">Copy &amp; paste</p>
+  <h1>Macros</h1>
+  <p>Tap Copy to copy just that macro. Search by code, word or violation.</p>
+  <p class="chat-key">Colours match the in-game chat: <code class="chat-me">/me</code> <code class="chat-do">/do</code> <code class="chat-flobby">/flobby</code></p>
+  <details class="details-wrap" id="details-box"><summary><span class="details-title">Your details</span><span class="details-sum" id="details-sum">Optional: add your name and badge number</span></summary><fieldset class="details"><legend class="sr-only">Your details</legend>
+    <label>Officer name <input id="officer-name" type="text" autocomplete="off" placeholder="Your in-game name"></label>
+    <label>Badge number <input id="officer-badge" type="text" autocomplete="off" inputmode="numeric" placeholder="####"></label>
+    <p class="hint">Optional. These fill in your intro macro and stay on this device only.</p>
+  </fieldset></details>
+</div>
+<div class="toolbar">
+  <div class="wrap">
+    <div class="toolbar-row">
+      <label class="sr-only" for="search">Search macros</label>
+      <input id="search" type="search" placeholder="Search macros: 10-4, rights, taser, felony">
+      <span id="result-count"></span>
+    </div>
+    <nav class="chips" aria-label="Macro categories">
+      <a class="chip tone-gold" href="#roleplay">Roleplay</a>
+      <a class="chip tone-cyan" href="#radio">Radio</a>
+      <a class="chip tone-red" href="#felonies">Felonies</a>
+      <a class="chip tone-blue" href="#infractions">Infractions</a>
+      <a class="chip tone-green" href="#misdemeanors">Misdemeanors</a>
+    </nav>
+  </div>
+</div>
+<div class="wrap">
+  <div id="macro-list"></div>
+  <p class="no-results" id="no-results" hidden>No macros match that search.</p>
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html"><img src="images/crops/badge.jpg" alt="" width="42" height="42">Chico PD</a>
+      <p>A player-made handbook for the Chico PD faction in an online roleplay game. It has no connection to any real police department or government agency.</p>
+    </div>
+    <nav aria-label="Footer">
+      <h2>Pages</h2>
+      <ul><li><a href="index.html">Home</a></li><li><a href="macros.html">Macros</a></li><li><a href="violations.html">Violations</a></li><li><a href="guides.html">Guides</a></li><li><a href="rules.html">PD Rules</a></li></ul>
+    </nav>
+    <div>
+      <h2>Officers</h2>
+      <ul><li><a href="new-officers.html">New Officers</a></li><li><a href="rp-videos.html">RP Videos</a></li><li><a href="gallery.html">Pictures</a></li><li><a href="macros.html#radio">Radio codes</a></li><li><a href="https://candid-cocada-e17edb.netlify.app" rel="noopener">Macro-only page</a></li></ul>
+    </div>
+  </div>
+  <div class="wrap footer-base"><span>Training material by the PDU, Professional Development Unit.</span><span>Know the laws &middot; Apply them correctly &middot; Keep Chico safe</span></div>
+</footer>
+<div id="copy-status" class="sr-only" aria-live="polite"></div>
+<dialog id="manual-copy" aria-labelledby="manual-title">
+  <h2 id="manual-title">Copy it manually</h2>
+  <p>Your browser blocked automatic copying. Press and hold the text below, then choose Copy.</p>
+  <textarea id="manual-text" readonly></textarea>
+  <button class="btn" id="manual-close" type="button">Done</button>
+</dialog>
+<dialog id="viewer" aria-labelledby="viewer-title">
+  <div class="viewer-bar">
+    <h2 id="viewer-title"></h2>
+    <span id="viewer-pos"></span>
+    <button class="vbtn" id="viewer-prev" type="button" aria-label="Previous picture">&larr;</button>
+    <button class="vbtn" id="viewer-next" type="button" aria-label="Next picture">&rarr;</button>
+    <a class="vbtn" id="viewer-save" download>Download</a>
+    <button class="vbtn" id="viewer-close" type="button">Close</button>
+  </div>
+  <div class="viewer-scroll"><img id="viewer-img" alt=""></div>
+</dialog>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
