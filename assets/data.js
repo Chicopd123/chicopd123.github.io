@@ -160,12 +160,10 @@ CHICO.command = [
     { rank: "First Sergeant", short: "1SG", insignia: "chev3r1", many: true,
       about: "Helps the Sergeant Major, keeps the sergeants organised and checks on officers' conduct." },
     { rank: "Sergeant", short: "SGT", insignia: "chev3", many: true,
-      about: "Rides with recruits on patrol, helps on traffic stops and pursuits, and corrects mistakes on the spot." }
+      about: "The first badged rank. Patrols on their own, makes arrests and helps recruits on traffic stops and pursuits." }
   ] },
   { tier: "Recruits", tone: "silver", ranks: [
-    { rank: "Recruit", short: "RCT", insignia: "chev1", many: true,
-      about: "A newly badged officer. Patrols, follows orders from the ranks above and keeps learning from the sergeants." },
-    { rank: "Cadet / Trainee", short: "CDT", insignia: "none", many: true,
-      about: "Unbadged and in training. Learning the rules and macros, working up to 50,000 XP and passing RP1 and RP2." }
+    { rank: "Recruit", short: "RCT", insignia: "none", many: true,
+      about: "Unbadged and in training. Adds their macros, works up to 50,000 XP and passes RP1 and RP2 to earn a badge and become a Sergeant." }
   ] }
 ];
