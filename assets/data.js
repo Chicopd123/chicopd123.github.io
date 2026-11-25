@@ -123,24 +123,49 @@ CHICO.violationMacro = function (group, item) {
   return "/me ISSUE " + item[0] + " " + item[1] + " [+" + group.minutes + "MIN]";
 };
 
-/* Chain of command. Highest rank first. To add someone, put their name in the
-   "people" list for their rank. A rank with no names shows as "To be announced". */
+/* Chain of command. Highest rank first.
+   To add someone, put their name in the "people" list for their rank.
+   "about" is the short description of what the rank does.
+   many: true means the rank has too many officers to list by name. */
 CHICO.command = [
   { tier: "Command staff", tone: "gold", ranks: [
-    { rank: "Chief Federal General", short: "CFG", insignia: "stars5", people: ["Megan Geeta"] },
-    { rank: "Deputy Federal General", short: "DFG", insignia: "stars4", people: ["Lex Dagreat", "Tank Brazy"] }
+    { rank: "Chief Federal General", short: "CFG", insignia: "stars5", people: ["Megan Geeta"],
+      about: "Leads the whole of Chico PD. Has the final say on rules, promotions and removals, and sets the direction of the department." },
+    { rank: "Deputy Federal General", short: "DFG", insignia: "stars4", people: ["Lex Dagreat", "Tank Brazy"],
+      about: "Second in command. Runs the department with the Chief, takes charge when the Chief is away and signs off senior promotions." }
   ] },
   { tier: "General officers", tone: "purple", ranks: [
-    { rank: "Colonel General", short: "CG", insignia: "stars3", people: ["Dan Beans", "Rachael Adlyn"] },
-    { rank: "Lieutenant General", short: "LG", insignia: "stars2", people: ["Kryptic Khaos", "Big Papabear", "Diggy Rogers"] },
-    { rank: "Major General", short: "MG", insignia: "stars1", people: [] }
+    { rank: "Colonel General", short: "CG", insignia: "stars3", people: ["Dan Beans", "Rachael Adlyn"],
+      about: "Senior leadership. Oversees the generals below, deals with serious complaints and discipline, and helps decide promotions." },
+    { rank: "Lieutenant General", short: "LG", insignia: "stars2", people: ["Kryptic Khaos", "Big Papabear", "Diggy Rogers"],
+      about: "Keeps the department running day to day: training standards, events and how officers behave on duty." },
+    { rank: "Major General", short: "MG", insignia: "stars1", people: ["Kyler Random", "Smooth", "John Gibbs", "Sarah Warwick", "Miss Smith", "Billy Jackson", "Bronx Baby", "Lonno Rampa", "Kevin Alcala", "Mrs Dagreat", "Dr Satan", "Leah Gibbs", "Shellz Hunter", "Thomas Miller", "Jayden Lucious", "Bones Brazy", "Monster Bud"],
+      about: "Supports the senior generals. Supervises shifts and the officers below, and helps train and check newer officers." }
   ] },
   { tier: "Field officers", tone: "blue", ranks: [
-    { rank: "Colonel", short: "COL", insignia: "eagle", people: [] },
-    { rank: "Major", short: "MAJ", insignia: "leaf", people: [] }
+    { rank: "Colonel", short: "COL", insignia: "eagle", many: true,
+      about: "Commands the officers on duty, organises patrols and makes sure the PD rules are followed." },
+    { rank: "Major", short: "MAJ", insignia: "leaf", many: true,
+      about: "Backs up the Colonel, supervises officers on shift and checks arrests and reports." }
   ] },
   { tier: "Company officers", tone: "cyan", ranks: [
-    { rank: "Captain", short: "CPT", insignia: "bars2", people: [] },
-    { rank: "Lieutenant", short: "LT", insignia: "bars1", people: [] }
+    { rank: "Captain", short: "CPT", insignia: "bars2", many: true,
+      about: "Leads a shift or team, takes control of scenes and reports up to the Major." },
+    { rank: "Lieutenant", short: "LT", insignia: "bars1", many: true,
+      about: "The first leadership rank. Runs scenes, guides newer officers and passes problems up the chain." }
+  ] },
+  { tier: "Non-commissioned officers", tone: "green", ranks: [
+    { rank: "Sergeant Major", short: "SGM", insignia: "chev3r2", many: true,
+      about: "The most senior sergeant. Looks after the sergeants and keeps standards high across the lower ranks." },
+    { rank: "First Sergeant", short: "1SG", insignia: "chev3r1", many: true,
+      about: "Helps the Sergeant Major, keeps the sergeants organised and checks on officers' conduct." },
+    { rank: "Sergeant", short: "SGT", insignia: "chev3", many: true,
+      about: "Rides with recruits on patrol, helps on traffic stops and pursuits, and corrects mistakes on the spot." }
+  ] },
+  { tier: "Recruits", tone: "silver", ranks: [
+    { rank: "Recruit", short: "RCT", insignia: "chev1", many: true,
+      about: "A newly badged officer. Patrols, follows orders from the ranks above and keeps learning from the sergeants." },
+    { rank: "Cadet / Trainee", short: "CDT", insignia: "none", many: true,
+      about: "Unbadged and in training. Learning the rules and macros, working up to 50,000 XP and passing RP1 and RP2." }
   ] }
 ];

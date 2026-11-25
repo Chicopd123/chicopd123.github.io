@@ -391,7 +391,7 @@
   /* ---------- Scroll reveal + count-up.
      Uses plain scroll position checks so it works in every browser. Anything already
      on screen shows straight away, and nothing can get stuck hidden. ---------- */
-  var REVEAL = ".card, .tile, .stat, .journey-step, .notice, .info-block, .rp-card, .rp-locked, .shot, .macro-group, .section-head, .footer-grid > *, .cmd-rank-head, .cmd-person, .cmd-tier-label, .cmd-legend";
+  var REVEAL = ".card, .tile, .stat, .journey-step, .notice, .info-block, .rp-card, .rp-locked, .shot, .macro-group, .section-head, .footer-grid > *, .cmd-rank-head, .cmd-person, .cmd-tier-label, .cmd-legend, .cmd-step";
   var pending = [];
   var counters = [];
   var watching = false;
@@ -485,6 +485,14 @@
       bars2: '<rect x="18" y="8" width="10" height="40" rx="2"/><rect x="36" y="8" width="10" height="40" rx="2"/>',
       bars1: '<rect x="27" y="8" width="10" height="40" rx="2"/>'
     }[kind] || "";
+    var lines = {
+      chev3r2: '<path d="M10 13 L32 4 L54 13"/><path d="M10 21 L32 12 L54 21"/><path d="M10 29 L32 20 L54 29"/><path d="M10 34 Q32 44 54 34"/><path d="M10 42 Q32 52 54 42"/>',
+      chev3r1: '<path d="M10 15 L32 6 L54 15"/><path d="M10 23 L32 14 L54 23"/><path d="M10 31 L32 22 L54 31"/><path d="M10 38 Q32 48 54 38"/>',
+      chev3: '<path d="M10 21 L32 12 L54 21"/><path d="M10 30 L32 21 L54 30"/><path d="M10 39 L32 30 L54 39"/>',
+      chev1: '<path d="M10 31 L32 22 L54 31"/>',
+      none: '<circle cx="32" cy="28" r="13"/>'
+    }[kind];
+    if (lines) return '<span class="ins ins-lines"><svg viewBox="0 0 64 56" aria-hidden="true">' + lines + "</svg></span>";
     return '<span class="ins ins-' + kind + '"><svg viewBox="0 0 64 56" aria-hidden="true">' + art + "</svg></span>";
   }
   function initials(name) {
@@ -494,33 +502,34 @@
   function renderCommand() {
     var tree = $("#cmd-tree");
     if (!tree || !window.CHICO || !CHICO.command) return;
-    var html = "", legend = "", total = 0, level = 0;
-    CHICO.command.forEach(function (tier, t) {
+    var html = "", legend = "", named = 0, level = 0;
+    CHICO.command.forEach(function (tier) {
       var tierCount = 0, ranks = "";
       tier.ranks.forEach(function (r) {
         level++;
         var people = r.people || [];
         tierCount += people.length;
+        var top = level === 1;
         var cards = people.length
-          ? people.map(function (p) {
-              return '<li class="cmd-person' + (level === 1 ? " is-top" : "") + '"><span class="cmd-avatar" aria-hidden="true">' + esc(initials(p)) +
+          ? '<ul class="cmd-people' + (people.length > 6 ? " is-compact" : "") + '">' + people.map(function (p) {
+              return '<li class="cmd-person' + (top ? " is-top" : "") + '"><span class="cmd-avatar" aria-hidden="true">' + esc(initials(p)) +
                 '</span><span class="cmd-name">' + esc(p) + '</span><span class="cmd-role">' + esc(r.rank) + "</span></li>";
-            }).join("")
-          : '<li class="cmd-person is-open"><span class="cmd-avatar" aria-hidden="true">?</span><span class="cmd-name">To be announced</span><span class="cmd-role">' + esc(r.rank) + "</span></li>";
-        ranks += '<li class="cmd-rank' + (level === 1 ? " is-top" : "") + '">' +
-          '<div class="cmd-rank-head"><span class="cmd-level" aria-hidden="true">' + level + "</span>" + insignia(r.insignia) +
-          '<div class="cmd-rank-text"><h2>' + esc(r.rank) + '</h2><p><span class="cmd-abbr">' + esc(r.short) + "</span>" +
-          (people.length ? people.length + (people.length === 1 ? " officer" : " officers") : "Open") + "</p></div></div>" +
-          '<ul class="cmd-people">' + cards + "</ul></li>";
+            }).join("") + "</ul>"
+          : (r.many ? "" : '<ul class="cmd-people"><li class="cmd-person is-open"><span class="cmd-avatar" aria-hidden="true">?</span><span class="cmd-name">To be announced</span><span class="cmd-role">' + esc(r.rank) + "</span></li></ul>");
+        var countText = people.length ? people.length + (people.length === 1 ? " officer" : " officers") : (r.many ? "Many officers" : "Open");
+        ranks += '<li class="cmd-rank' + (top ? " is-top" : "") + '">' +
+          '<div class="cmd-rank-head"><div class="cmd-rank-top"><span class="cmd-level" aria-hidden="true">' + level + "</span>" + insignia(r.insignia) +
+          '<div class="cmd-rank-text"><h2>' + esc(r.rank) + '</h2><p><span class="cmd-abbr">' + esc(r.short) + "</span>" + countText + "</p></div></div>" +
+          (r.about ? '<p class="cmd-about">' + esc(r.about) + "</p>" : "") + "</div>" + cards + "</li>";
       });
-      total += tierCount;
+      named += tierCount;
       var id = "tier-" + tier.tier.toLowerCase().replace(/[^a-z]+/g, "-");
-      html += '<li class="cmd-tier tone-' + tier.tone + '" id="' + id + '"><h2 class="cmd-tier-label"><span>' + esc(tier.tier) + "</span></h2><ol class=\"cmd-ranks\">" + ranks + "</ol></li>";
-      legend += '<a class="chip tone-' + tier.tone + '" href="#' + id + '">' + esc(tier.tier) + "<b>" + tierCount + "</b></a>";
+      html += '<li class="cmd-tier tone-' + tier.tone + '" id="' + id + '"><h2 class="cmd-tier-label"><span>' + esc(tier.tier) + '</span></h2><ol class="cmd-ranks">' + ranks + "</ol></li>";
+      legend += '<a class="chip tone-' + tier.tone + '" href="#' + id + '">' + esc(tier.tier) + (tierCount ? "<b>" + tierCount + "</b>" : "") + "</a>";
     });
     tree.innerHTML = html;
     var lg = $("#cmd-legend");
-    if (lg) lg.innerHTML = '<p class="cmd-total"><strong>' + total + "</strong> officers in command &middot; <strong>" + level + "</strong> ranks</p><div class=\"cmd-chips\">" + legend + "</div>";
+    if (lg) lg.innerHTML = '<p class="cmd-total"><strong>' + level + "</strong> ranks &middot; <strong>" + named + '</strong> named officers</p><div class="cmd-chips">' + legend + "</div>";
   }
 
   /* The gold line down the chart fills in as you scroll. */
