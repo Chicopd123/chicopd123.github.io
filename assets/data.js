@@ -123,7 +123,7 @@ CHICO.violationMacro = function (group, item) {
   return "/me ISSUE " + item[0] + " " + item[1] + " [+" + group.minutes + "MIN]";
 };
 
-/* Chain of command. Highest rank first.
+/* Chain of command. Highest rank first (Chief = rank 13, Recruit = rank 1).
    To add someone, put their name in the "people" list for their rank.
    "about" is the short description of what the rank does.
    many: true means the rank has too many officers to list by name. */
@@ -140,30 +140,30 @@ CHICO.command = [
     { rank: "Lieutenant General", short: "LG", insignia: "stars2", people: ["Kryptic Khaos", "Big Papabear", "Diggy Rogers"],
       about: "Keeps the department running day to day: training standards, events and how officers behave on duty." },
     { rank: "Major General", short: "MG", insignia: "stars1", people: ["Kyler Random", "Smooth", "John Gibbs", "Sarah Warwick", "Miss Smith", "Billy Jackson", "Bronx Baby", "Lonno Rampa", "Kevin Alcala", "Mrs Dagreat", "Dr Satan", "Leah Gibbs", "Shellz Hunter", "Thomas Miller", "Jayden Lucious", "Bones Brazy", "Monster Bud"],
-      about: "Supports the senior generals. Supervises shifts and the officers below, and helps train and check newer officers." }
+      about: "Supervisors, and usually high up in the units." }
   ] },
   { tier: "Field officers", tone: "blue", ranks: [
     { rank: "Colonel", short: "COL", insignia: "eagle", many: true,
-      about: "Commands the officers on duty, organises patrols and makes sure the PD rules are followed." },
+      about: "Supervises when no Major General is around, and can be a tester for the vest test." },
     { rank: "Major", short: "MAJ", insignia: "leaf", many: true,
-      about: "Backs up the Colonel, supervises officers on shift and checks arrests and reports." }
+      about: "Overlooks the other vested officers and helps them." }
   ] },
   { tier: "Company officers", tone: "cyan", ranks: [
     { rank: "Captain", short: "CPT", insignia: "bars2", many: true,
-      about: "Leads a shift or team, takes control of scenes and reports up to the Major." },
+      about: "Same as a Lieutenant: teaches RP1 and RP2, and can take badged officers on a 10-12 (ride-along)." },
     { rank: "Lieutenant", short: "LT", insignia: "bars1", many: true,
-      about: "The first leadership rank. Runs scenes, guides newer officers and passes problems up the chain." }
+      about: "Teaches RP1 and RP2, and can take badged officers on a 10-12 (ride-along)." }
   ] },
   { tier: "Non-commissioned officers", tone: "green", ranks: [
     { rank: "Sergeant Major", short: "SGM", insignia: "chev3r2", many: true,
-      about: "The most senior sergeant. Looks after the sergeants and keeps standards high across the lower ranks." },
+      about: "Cleared from Floor 1, so can go on patrols. Shows 5 bodycams (BC) and reaches the next rank's XP to apply for the vest test." },
     { rank: "First Sergeant", short: "1SG", insignia: "chev3r1", many: true,
-      about: "Helps the Sergeant Major, keeps the sergeants organised and checks on officers' conduct." },
+      about: "Sends 5 bodycams (BC) to a PAB member, who checks them and clears you from Floor 1 so you can go on patrols." },
     { rank: "Sergeant", short: "SGT", insignia: "chev3", many: true,
-      about: "The first badged rank. Patrols on their own, makes arrests and helps recruits on traffic stops and pursuits." }
+      about: "Just got the badge. Works on Floor 1 at the metal detectors." }
   ] },
   { tier: "Recruits", tone: "silver", ranks: [
     { rank: "Recruit", short: "RCT", insignia: "none", many: true,
-      about: "Unbadged and in training. Adds their macros, works up to 50,000 XP and passes RP1 and RP2 to earn a badge and become a Sergeant." }
+      about: "Unbadged. Needs to add the macros, reach 50,000 XP and pass RP1 and RP2 to get a badge." }
   ] }
 ];

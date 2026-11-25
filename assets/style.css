@@ -616,3 +616,6 @@ body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-ins
   .cmd-about { font-size: .95rem; }
   .cmd-people.is-compact .cmd-person { width: calc(50% - .35rem); }
 }
+.cmd-num { color: var(--text); font-weight: 600; }
+.cmd-num::after { content: "\00b7"; margin-left: .55rem; color: var(--dim); }
+.cmd-level { color: var(--tone); border-color: color-mix(in srgb, var(--tone) 45%, transparent); font-weight: 700; }

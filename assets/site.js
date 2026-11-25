@@ -503,6 +503,7 @@
     var tree = $("#cmd-tree");
     if (!tree || !window.CHICO || !CHICO.command) return;
     var html = "", legend = "", named = 0, level = 0;
+    var totalRanks = CHICO.command.reduce(function (n, tier) { return n + tier.ranks.length; }, 0);
     CHICO.command.forEach(function (tier) {
       var tierCount = 0, ranks = "";
       tier.ranks.forEach(function (r) {
@@ -518,8 +519,8 @@
           : (r.many ? "" : '<ul class="cmd-people"><li class="cmd-person is-open"><span class="cmd-avatar" aria-hidden="true">?</span><span class="cmd-name">To be announced</span><span class="cmd-role">' + esc(r.rank) + "</span></li></ul>");
         var countText = people.length ? people.length + (people.length === 1 ? " officer" : " officers") : (r.many ? "Many officers" : "Open");
         ranks += '<li class="cmd-rank' + (top ? " is-top" : "") + '">' +
-          '<div class="cmd-rank-head"><div class="cmd-rank-top"><span class="cmd-level" aria-hidden="true">' + level + "</span>" + insignia(r.insignia) +
-          '<div class="cmd-rank-text"><h2>' + esc(r.rank) + '</h2><p><span class="cmd-abbr">' + esc(r.short) + "</span>" + countText + "</p></div></div>" +
+          '<div class="cmd-rank-head"><div class="cmd-rank-top"><span class="cmd-level" title="Rank ' + (totalRanks - level + 1) + '">' + (totalRanks - level + 1) + "</span>" + insignia(r.insignia) +
+          '<div class="cmd-rank-text"><h2>' + esc(r.rank) + '</h2><p><span class="cmd-abbr">' + esc(r.short) + '</span><span class="cmd-num">Rank ' + (totalRanks - level + 1) + "</span>" + countText + "</p></div></div>" +
           (r.about ? '<p class="cmd-about">' + esc(r.about) + "</p>" : "") + "</div>" + cards + "</li>";
       });
       named += tierCount;
