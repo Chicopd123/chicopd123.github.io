@@ -34,6 +34,25 @@
       return m ? '<span class="tk"><b>' + esc(m[1]) + "</b>" + esc(m[2].replace(/\.$/, "")) + "</span>" : "";
     }).join("");
     run.innerHTML = '<div class="ticker-set">' + items + '</div><div class="ticker-set" aria-hidden="true">' + items + "</div>";
+    /* Move the ticker with a script so it starts on the first frame on every device. */
+    var set = run.firstChild, x = 0, last = 0, paused = false, speed = 60; /* pixels per second */
+    var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (fine) {
+      run.parentNode.addEventListener("mouseenter", function () { paused = true; });
+      run.parentNode.addEventListener("mouseleave", function () { paused = false; });
+    }
+    var step = function (now) {
+      var dt = last ? Math.min((now - last) / 1000, 0.1) : 0;
+      last = now;
+      var w = set.getBoundingClientRect().width;
+      if (!paused && w) {
+        x -= speed * dt;
+        if (-x >= w) x += w;
+        run.style.transform = "translate3d(" + x.toFixed(2) + "px,0,0)";
+      }
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
   }
 
   /* Chat preview: macros "typed" into a game chat box */
