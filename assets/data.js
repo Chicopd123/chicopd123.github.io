@@ -139,7 +139,7 @@ CHICO.command = [
       about: "Can put officers into uniform and appoint leaders. Oversees the generals below and deals with serious complaints." },
     { rank: "Lieutenant General", short: "LG", insignia: "stars2", people: ["Kryptic Khaos", "Big Papabear", "Diggy Rogers"],
       about: "Keeps the department running day to day: training standards, events and how officers behave on duty." },
-    { rank: "Major General", short: "MG", insignia: "stars1", people: ["Kyler Random", "Smooth", "John Gibbs", "Sarah Warwick", "Miss Smith", "Billy Jackson", "Bronx Baby", "Lonno Rampa", "Kevin Alcala", "Mrs Dagreat", "Dr Satan", "Leah Gibbs", "Shellz Hunter", "Thomas Miller", "Jayden Lucious", "Bones Brazy", "Monster Bud"],
+    { rank: "Major General", short: "MG", insignia: "stars1", people: ["Kyler Random", "MG Smooth", "John Gibbs", "Sarah Warwick", "Miss Smith", "Billy Jackson", "Bronx Baby", "Lonno Rampa", "Kevin Alcala", "Mrs Dagreat", "Dr Satan", "Leah Gibbs", "Shellz Hunter", "Thomas Miller", "Jayden Lucious", "Bones Brazy", "Monster Bud"],
       about: "Supervisors, and usually high up in the units." }
   ] },
   { tier: "Field officers", tone: "blue", ranks: [
