@@ -130,13 +130,13 @@ CHICO.violationMacro = function (group, item) {
 CHICO.command = [
   { tier: "Command staff", tone: "gold", ranks: [
     { rank: "Chief Federal General", short: "CFG", insignia: "stars5", people: ["Megan Geeta"],
-      about: "Leads the whole of Chico PD. Has the final say on rules, promotions and removals, and sets the direction of the department." },
+      about: "Above everyone in Chico PD. Handles promotions and firing, decides who joins the PD and sets the rules." },
     { rank: "Deputy Federal General", short: "DFG", insignia: "stars4", people: ["Lex Dagreat", "Tank Brazy"],
-      about: "Second in command. Runs the department with the Chief, takes charge when the Chief is away and signs off senior promotions." }
+      about: "Second in charge, with almost the same powers as the Chief. Can promote, fire and approve vacations (time off) for officers." }
   ] },
   { tier: "General officers", tone: "purple", ranks: [
     { rank: "Colonel General", short: "CG", insignia: "stars3", people: ["Dan Beans", "Rachael Adlyn"],
-      about: "Senior leadership. Oversees the generals below, deals with serious complaints and discipline, and helps decide promotions." },
+      about: "Can put officers into uniform and appoint leaders. Oversees the generals below and deals with serious complaints." },
     { rank: "Lieutenant General", short: "LG", insignia: "stars2", people: ["Kryptic Khaos", "Big Papabear", "Diggy Rogers"],
       about: "Keeps the department running day to day: training standards, events and how officers behave on duty." },
     { rank: "Major General", short: "MG", insignia: "stars1", people: ["Kyler Random", "Smooth", "John Gibbs", "Sarah Warwick", "Miss Smith", "Billy Jackson", "Bronx Baby", "Lonno Rampa", "Kevin Alcala", "Mrs Dagreat", "Dr Satan", "Leah Gibbs", "Shellz Hunter", "Thomas Miller", "Jayden Lucious", "Bones Brazy", "Monster Bud"],
