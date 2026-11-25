@@ -367,6 +367,15 @@
         toggle.setAttribute("aria-expanded", String(open));
       });
     }
+    /* "More" menu in the header */
+    var more = $(".nav-more"), moreBtn = $(".nav-more-btn");
+    if (more && moreBtn) {
+      var setMore = function (open) { more.classList.toggle("is-open", open); moreBtn.setAttribute("aria-expanded", String(open)); };
+      moreBtn.addEventListener("click", function (e) { e.stopPropagation(); setMore(!more.classList.contains("is-open")); });
+      document.addEventListener("click", function (e) { if (!more.contains(e.target)) setMore(false); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && more.classList.contains("is-open")) { setMore(false); moreBtn.focus(); } });
+    }
+
     var top = document.createElement("button");
     top.className = "to-top";
     top.type = "button";
