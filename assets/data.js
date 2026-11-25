@@ -122,3 +122,25 @@ CHICO.violations = [
 CHICO.violationMacro = function (group, item) {
   return "/me ISSUE " + item[0] + " " + item[1] + " [+" + group.minutes + "MIN]";
 };
+
+/* Chain of command. Highest rank first. To add someone, put their name in the
+   "people" list for their rank. A rank with no names shows as "To be announced". */
+CHICO.command = [
+  { tier: "Command staff", tone: "gold", ranks: [
+    { rank: "Chief Federal General", short: "CFG", insignia: "stars5", people: ["Megan Geeta"] },
+    { rank: "Deputy Federal General", short: "DFG", insignia: "stars4", people: ["Lex Dagreat", "Tank Brazy"] }
+  ] },
+  { tier: "General officers", tone: "purple", ranks: [
+    { rank: "Colonel General", short: "CG", insignia: "stars3", people: ["Dan Beans", "Rachael Adlyn"] },
+    { rank: "Lieutenant General", short: "LG", insignia: "stars2", people: ["Kryptic Khaos", "Big Papabear", "Diggy Rogers"] },
+    { rank: "Major General", short: "MG", insignia: "stars1", people: [] }
+  ] },
+  { tier: "Field officers", tone: "blue", ranks: [
+    { rank: "Colonel", short: "COL", insignia: "eagle", people: [] },
+    { rank: "Major", short: "MAJ", insignia: "leaf", people: [] }
+  ] },
+  { tier: "Company officers", tone: "cyan", ranks: [
+    { rank: "Captain", short: "CPT", insignia: "bars2", people: [] },
+    { rank: "Lieutenant", short: "LT", insignia: "bars1", people: [] }
+  ] }
+];

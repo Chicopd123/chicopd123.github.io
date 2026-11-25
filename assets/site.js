@@ -391,7 +391,7 @@
   /* ---------- Scroll reveal + count-up.
      Uses plain scroll position checks so it works in every browser. Anything already
      on screen shows straight away, and nothing can get stuck hidden. ---------- */
-  var REVEAL = ".card, .tile, .stat, .journey-step, .notice, .info-block, .rp-card, .rp-locked, .shot, .macro-group, .section-head, .footer-grid > *";
+  var REVEAL = ".card, .tile, .stat, .journey-step, .notice, .info-block, .rp-card, .rp-locked, .shot, .macro-group, .section-head, .footer-grid > *, .cmd-rank-head, .cmd-person, .cmd-tier-label, .cmd-legend";
   var pending = [];
   var counters = [];
   var watching = false;
@@ -415,6 +415,7 @@
   }
 
   function check() {
+    fillCommand();
     pending = pending.filter(function (el) {
       if (el.closest("[hidden]")) return true;
       if (inView(el)) { el.classList.add("is-in"); return false; }
@@ -457,12 +458,81 @@
     check();
   }
 
+  if ($("#cmd-tree")) {
+    window.addEventListener("scroll", function () { requestAnimationFrame(fillCommand); }, { passive: true });
+    window.addEventListener("resize", fillCommand);
+    fillCommand();
+  }
+
   function initCounters() {
     if (reduceMotion) return;
     counters = $$("[data-count]");
     check();
   }
 
+  /* ---------- Chain of command page ---------- */
+  var STAR = '<path d="M12 2.4l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.3l-5.9 3.1 1.2-6.5L2.5 9.3l6.6-.9z"/>';
+  function insignia(kind) {
+    var m = /^stars(\d)$/.exec(kind);
+    if (m) {
+      var n = +m[1], s = "";
+      for (var i = 0; i < n; i++) s += '<svg viewBox="0 0 24 24" aria-hidden="true">' + STAR + "</svg>";
+      return '<span class="ins ins-stars" style="--n:' + n + '">' + s + "</span>";
+    }
+    var art = {
+      eagle: '<path d="M32 10c-2.6 0-4.4 1.9-4.4 4.2 0 1.2.5 2.2 1.3 3L12 13.4c-3.4-.8-6.6.8-8 3.6l14.6 3.4-11.2.6c-1.6 2.6-1.3 5.4.3 7.4l13-2.3-6.2 4.6c.6 2.4 2.8 4 5.4 4l7.5-6.2.9 7.4L26 42h12l-2.3-6.1.9-7.4 7.5 6.2c2.6 0 4.8-1.6 5.4-4l-6.2-4.6 13 2.3c1.6-2 1.9-4.8.3-7.4L45.4 20.4 60 17c-1.4-2.8-4.6-4.4-8-3.6L35.1 17.2c.8-.8 1.3-1.8 1.3-3C36.4 11.9 34.6 10 32 10z"/>',
+      leaf: '<path d="M32 6c3.5 4 5.6 6.8 9.2 7.5-1 3 .3 5 3.6 6.3-1.8 2.8-1.1 5.4 2.2 7.2-2.7 2.3-3 4.9-.8 7.6-3.5.9-5.3 3-5.1 6.4-3.3-.6-5.8.4-7.6 3V52h-3v-8c-1.8-2.6-4.3-3.6-7.6-3 .2-3.4-1.6-5.5-5.1-6.4 2.2-2.7 1.9-5.3-.8-7.6 3.3-1.8 4-4.4 2.2-7.2 3.3-1.3 4.6-3.3 3.6-6.3C26.4 12.8 28.5 10 32 6z"/><path d="M32 14v30" stroke="rgba(0,0,0,.35)" stroke-width="1.6" fill="none"/>',
+      bars2: '<rect x="18" y="8" width="10" height="40" rx="2"/><rect x="36" y="8" width="10" height="40" rx="2"/>',
+      bars1: '<rect x="27" y="8" width="10" height="40" rx="2"/>'
+    }[kind] || "";
+    return '<span class="ins ins-' + kind + '"><svg viewBox="0 0 64 56" aria-hidden="true">' + art + "</svg></span>";
+  }
+  function initials(name) {
+    return name.split(/\s+/).filter(Boolean).slice(0, 2).map(function (w) { return w[0]; }).join("").toUpperCase();
+  }
+
+  function renderCommand() {
+    var tree = $("#cmd-tree");
+    if (!tree || !window.CHICO || !CHICO.command) return;
+    var html = "", legend = "", total = 0, level = 0;
+    CHICO.command.forEach(function (tier, t) {
+      var tierCount = 0, ranks = "";
+      tier.ranks.forEach(function (r) {
+        level++;
+        var people = r.people || [];
+        tierCount += people.length;
+        var cards = people.length
+          ? people.map(function (p) {
+              return '<li class="cmd-person' + (level === 1 ? " is-top" : "") + '"><span class="cmd-avatar" aria-hidden="true">' + esc(initials(p)) +
+                '</span><span class="cmd-name">' + esc(p) + '</span><span class="cmd-role">' + esc(r.rank) + "</span></li>";
+            }).join("")
+          : '<li class="cmd-person is-open"><span class="cmd-avatar" aria-hidden="true">?</span><span class="cmd-name">To be announced</span><span class="cmd-role">' + esc(r.rank) + "</span></li>";
+        ranks += '<li class="cmd-rank' + (level === 1 ? " is-top" : "") + '">' +
+          '<div class="cmd-rank-head"><span class="cmd-level" aria-hidden="true">' + level + "</span>" + insignia(r.insignia) +
+          '<div class="cmd-rank-text"><h2>' + esc(r.rank) + '</h2><p><span class="cmd-abbr">' + esc(r.short) + "</span>" +
+          (people.length ? people.length + (people.length === 1 ? " officer" : " officers") : "Open") + "</p></div></div>" +
+          '<ul class="cmd-people">' + cards + "</ul></li>";
+      });
+      total += tierCount;
+      var id = "tier-" + tier.tier.toLowerCase().replace(/[^a-z]+/g, "-");
+      html += '<li class="cmd-tier tone-' + tier.tone + '" id="' + id + '"><h2 class="cmd-tier-label"><span>' + esc(tier.tier) + "</span></h2><ol class=\"cmd-ranks\">" + ranks + "</ol></li>";
+      legend += '<a class="chip tone-' + tier.tone + '" href="#' + id + '">' + esc(tier.tier) + "<b>" + tierCount + "</b></a>";
+    });
+    tree.innerHTML = html;
+    var lg = $("#cmd-legend");
+    if (lg) lg.innerHTML = '<p class="cmd-total"><strong>' + total + "</strong> officers in command &middot; <strong>" + level + "</strong> ranks</p><div class=\"cmd-chips\">" + legend + "</div>";
+  }
+
+  /* The gold line down the chart fills in as you scroll. */
+  function fillCommand() {
+    var tree = $("#cmd-tree");
+    if (!tree) return;
+    var r = tree.getBoundingClientRect(), h = window.innerHeight || 800;
+    var p = Math.max(0, Math.min(1, (h * 0.65 - r.top) / Math.max(r.height, 1)));
+    tree.style.setProperty("--fill", p.toFixed(3));
+  }
+
+  renderCommand();
   renderMacros();
   refreshMacros();
   initDetails();
