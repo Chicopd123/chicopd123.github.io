@@ -24,9 +24,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=202611250600">
+<link rel="stylesheet" href="assets/style.css?v=202611250715">
 </head>
-<body>
+<body class="home">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="lightbar"></div>
@@ -37,75 +37,141 @@
   </div>
 </header>
 <main id="main">
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-ambient" aria-hidden="true"><img src="images/crops/hero.jpg" alt=""></div>
-  <div class="hero-siren" aria-hidden="true"><span class="s-red"></span><span class="s-blue"></span></div>
-  <div class="hero-banner"><img src="images/crops/hero.jpg" width="1206" height="255" alt="PDU, Professional Development Unit banner: an officer, a patrol car and the Chico Police station at night"></div>
-  <div class="wrap hero-copy">
-    <p class="eyebrow tone-gold">Officer handbook &middot; PDU</p>
-    <h1 id="hero-title"><span class="shine">Chico PD</span></h1>
-    <p class="lede">Copy your macros, learn the guides and work your way to a badge. Everything you need on duty, in one place.</p>
-    <form class="hero-search" action="macros.html" method="get" role="search">
+<section class="xhero" aria-labelledby="hero-title">
+  <div class="xhero-bg" aria-hidden="true">
+    <div class="xhero-beam b-red"></div>
+    <div class="xhero-beam b-blue"></div>
+    <div class="xhero-glow g-red"></div>
+    <div class="xhero-glow g-blue"></div>
+    <div class="xhero-floor"></div>
+    <div class="xhero-dust"></div>
+  </div>
+  <div class="wrap xhero-inner">
+    <div class="xhero-badge" aria-hidden="true"><span class="xhero-ring"></span><img src="images/crops/badge.jpg" alt="" width="170" height="156"></div>
+    <p class="eyebrow tone-gold xhero-eyebrow">Officer handbook &middot; PDU</p>
+    <h1 id="hero-title" class="xhero-title"><span class="shine">Chico PD</span></h1>
+    <p class="xhero-type" aria-live="off"><span class="xhero-type-text" data-words="Copy your macros.|Learn the 10-codes.|Know every violation.|Pass RP1 and RP2.|Earn your badge.">Copy your macros.</span><span class="xhero-caret" aria-hidden="true"></span></p>
+    <div class="xhero-actions">
+      <a class="btn xhero-cta" href="macros.html?new=1"><span class="xhero-cta-pulse" aria-hidden="true"></span>New to PD? Start here <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ghost" href="quiz.html">Take a quiz</a>
+    </div>
+    <form class="hero-search xhero-search" action="macros.html" method="get" role="search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <label class="sr-only" for="home-search">Search macros</label>
       <input id="home-search" type="search" name="q" placeholder="Search macros: 10-4, rights, taser, 1.7">
       <button class="btn" type="submit">Search</button>
     </form>
-    <div class="hero-actions"><a class="btn" href="macros.html">Get your macros <span class="arrow" aria-hidden="true">&rarr;</span></a><a class="btn btn-ghost" href="#path">I'm new here</a></div>
   </div>
+  <a class="xhero-scroll" href="#dispatch" aria-label="Scroll down"><span></span></a>
+</section>
+
+<div class="ticker" id="dispatch" aria-label="Radio codes">
+  <span class="ticker-label"><span class="ticker-dot" aria-hidden="true"></span>Dispatch</span>
+  <div class="ticker-track"><div class="ticker-run" id="ticker-run"></div></div>
+</div>
+
+<section class="band xstats-band" aria-label="At a glance">
   <div class="wrap">
     <div class="stats">
       <a class="stat tone-gold" href="macros.html"><strong data-count="79">79</strong><span>Macros to copy</span></a>
-      <a class="stat tone-red" href="violations.html"><strong data-count="25">25</strong><span>Violations explained</span></a>
-      <a class="stat tone-cyan" href="gallery.html"><strong data-count="10">10</strong><span>Training posters</span></a>
-      <a class="stat tone-purple" href="rp-videos.html"><strong data-count="2">2</strong><span>RP videos</span></a>
+      <a class="stat tone-red" href="violations.html"><strong data-count="25">25</strong><span>Violations</span></a>
+      <a class="stat tone-green" href="quiz.html"><strong data-count="30">30</strong><span>Quiz scenes</span></a>
+      <a class="stat tone-purple" href="command.html"><strong data-count="13">13</strong><span>Ranks</span></a>
     </div>
   </div>
 </section>
 
 <section class="band band-alt" id="path" aria-labelledby="path-title">
   <div class="wrap">
-    <div class="section-head tone-purple">
-      <div><p class="eyebrow">Start here</p><h2 id="path-title">Your path to a badge</h2><p>Four steps from your first shift to wearing the badge.</p></div>
-      <a class="btn btn-ghost" href="new-officers.html">New officer guide <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    <div class="section-head tone-gold">
+      <div><p class="eyebrow">New to Chico PD?</p><h2 id="path-title">Your route to a badge</h2><p>Start with your macros, then learn what you need to do.</p></div>
+      <a class="btn" href="macros.html?new=1">Start with macros <span class="arrow" aria-hidden="true">&rarr;</span></a>
     </div>
     <ol class="journey">
-      <li class="journey-step tone-purple"><span class="journey-num">1</span><h3>Learn the rules</h3><p>Know what you can't do while unbadged, and the 16 PD rules every officer follows.</p><div class="journey-links"><a href="new-officers.html">New officers</a><a href="rules.html">PD rules</a></div></li>
-      <li class="journey-step tone-gold"><span class="journey-num">2</span><h3>Add your macros</h3><p>Copy every macro into the game, then get them verified by a vested officer or above.</p><div class="journey-links"><a href="macros.html">Macros</a></div></li>
-      <li class="journey-step tone-blue"><span class="journey-num">3</span><h3>Reach 50,000 XP</h3><p>Patrol until you hit 50,000 XP, learning traffic stops, pursuits and arrests as you go.</p><div class="journey-links"><a href="guides.html">Guides</a><a href="violations.html">Violations</a></div></li>
+      <li class="journey-step tone-gold"><span class="journey-num">1</span><h3>Copy your macros</h3><p>Add every macro to the game, then get them verified by a vested officer or above.</p><div class="journey-links"><a href="macros.html?new=1">Macros</a></div></li>
+      <li class="journey-step tone-purple"><span class="journey-num">2</span><h3>Learn what to do</h3><p>What you can't do while unbadged, and the 16 PD rules every officer follows.</p><div class="journey-links"><a href="new-officers.html">New officers</a><a href="rules.html">PD rules</a></div></li>
+      <li class="journey-step tone-blue"><span class="journey-num">3</span><h3>Reach 50,000 XP</h3><p>Patrol until you hit 50,000 XP, learning traffic stops, pursuits and arrests.</p><div class="journey-links"><a href="guides.html">Guides</a><a href="quiz.html">Quizzes</a></div></li>
       <li class="journey-step tone-green"><span class="journey-num">4</span><h3>Pass RP1 and RP2</h3><p>Watch the RP videos, then do RP1 and RP2 with a vested officer.</p><div class="journey-links"><a href="rp-videos.html">RP videos</a></div></li>
     </ol>
     <p class="journey-end"><img src="images/crops/badge.jpg" alt="" width="36" height="36">Pass your training and you'll get your <strong>badge</strong> in less than 24 hours</p>
   </div>
 </section>
 
-<section class="band" aria-labelledby="learn">
+<section class="band" aria-labelledby="duty-title">
   <div class="wrap">
     <div class="section-head tone-blue">
-      <div><p class="eyebrow">Training</p><h2 id="learn">Learn the job</h2><p>The PDU training posters, with a short explanation of each.</p></div>
-      <a class="btn btn-ghost" href="guides.html">All guides <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <div><p class="eyebrow">On duty</p><h2 id="duty-title">Everything you need</h2><p>Jump straight to what you're after.</p></div>
     </div>
-    <div class="cards">
-      <a class="card tone-blue" href="guides.html#traffic"><div class="card-img"><img src="images/crops/card-traffic.jpg" alt="" loading="lazy"></div><div class="card-body"><h3>Traffic Stop <span class="arrow" aria-hidden="true">&rarr;</span></h3><p>From pulling them over to clear or wanted.</p></div></a>
-      <a class="card tone-cyan" href="guides.html#pursuit"><div class="card-img"><img src="images/crops/card-pursuit.jpg" alt="" loading="lazy"></div><div class="card-body"><h3>Vehicle Pursuit <span class="arrow" aria-hidden="true">&rarr;</span></h3><p>From the 10-57 to the arrest, and when to PIT.</p></div></a>
-      <a class="card tone-purple" href="guides.html#arrest"><div class="card-img"><img src="images/crops/card-arrest.jpg" alt="" loading="lazy"></div><div class="card-body"><h3>Official Arrest <span class="arrow" aria-hidden="true">&rarr;</span></h3><p>The 14 steps from introduction to jail.</p></div></a>
-      <a class="card tone-gold" href="rp-videos.html"><div class="card-img"><img src="images/crops/card-new.jpg" alt="" loading="lazy"></div><div class="card-body"><h3>RP Videos <span class="arrow" aria-hidden="true">&rarr;</span></h3><p>Watch RP1 and RP2 before you do them.</p></div></a>
+    <div class="bento">
+      <a class="bento-tile bento-macros tone-gold" href="macros.html">
+        <div class="bento-top"><span class="bento-tag">79 macros</span><h3>Macros</h3><p>Every macro, one tap to copy. Colours match the in-game chat.</p></div>
+        <div class="chatbox" aria-hidden="true">
+          <div class="chatbox-bar"><span></span><span></span><span></span>Chat</div>
+          <div class="chatbox-lines" id="chat-lines"></div>
+        </div>
+        <span class="bento-go">Open macros <span class="arrow">&rarr;</span></span>
+      </a>
+
+      <div class="bento-tile bento-quiz tone-green">
+        <div class="bento-top"><span class="bento-tag"><span class="ticker-dot" aria-hidden="true"></span>Pop quiz</span><h3 id="pop-q">Loading a question...</h3></div>
+        <div class="pop-options" id="pop-options"></div>
+        <p class="pop-result" id="pop-result" aria-live="polite"></p>
+        <div class="pop-foot"><button type="button" class="pop-new" id="pop-new">New question</button><a href="quiz.html">All quizzes <span class="arrow" aria-hidden="true">&rarr;</span></a></div>
+      </div>
+
+      <a class="bento-tile bento-chief tone-gold" href="command.html">
+        <span class="bento-tag">13 ranks</span>
+        <div class="mini-chief"><span class="mini-avatar">MG</span><span class="mini-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span><strong>Megan Geeta</strong><small>Chief Federal General</small></div>
+        <h3>Chain of Command</h3>
+        <span class="bento-go">See every rank <span class="arrow">&rarr;</span></span>
+      </a>
+
+      <a class="bento-tile bento-video tone-purple" href="rp-videos.html">
+        <div class="bento-video-img"><img src="videos/rp1-traffic-stop.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></div>
+        <span class="bento-tag">2 videos</span>
+        <h3>RP Videos</h3>
+        <p>Watch RP1 and RP2 before you do them.</p>
+      </a>
+
+      <a class="bento-tile bento-law tone-red" href="violations.html">
+        <span class="bento-tag">25 codes</span>
+        <h3>Violations</h3>
+        <div class="law-bars" aria-hidden="true">
+          <span class="lb lb-red"><b>1.x</b><i style="--w:100%"></i><em>20 min</em></span>
+          <span class="lb lb-blue"><b>2.x</b><i style="--w:50%"></i><em>10 min</em></span>
+          <span class="lb lb-green"><b>3.x</b><i style="--w:25%"></i><em>5 min</em></span>
+        </div>
+      </a>
+
+      <a class="bento-tile bento-guides tone-cyan" href="guides.html">
+        <div class="bento-guides-imgs" aria-hidden="true"><img src="images/crops/card-traffic.jpg" alt="" loading="lazy"><img src="images/crops/card-pursuit.jpg" alt="" loading="lazy"><img src="images/crops/card-arrest.jpg" alt="" loading="lazy"></div>
+        <span class="bento-tag">Step by step</span>
+        <h3>Guides</h3>
+        <p>Traffic stops, pursuits and the 14-step arrest.</p>
+      </a>
+
+      <a class="bento-tile bento-rules tone-blue" href="rules.html">
+        <span class="bento-tag">16 rules</span>
+        <h3>PD Rules</h3>
+        <p>Warnings, reprimands and what gets you dismissed.</p>
+      </a>
+
+      <a class="bento-tile bento-pics tone-cyan" href="gallery.html">
+        <span class="bento-tag">10 posters</span>
+        <h3>Pictures</h3>
+        <p>Every training poster to view and download.</p>
+      </a>
     </div>
   </div>
 </section>
 
-<section class="band band-alt" aria-labelledby="law">
-  <div class="wrap">
-    <div class="section-head tone-red">
-      <div><p class="eyebrow">Violations &amp; rules</p><h2 id="law">Know the law</h2><p>Every violation adds time to a sentence. Know which one to issue.</p></div>
-    </div>
-    <div class="tiles">
-      <a class="tile tone-red" href="violations.html#felonies"><span class="time">20 min</span><strong>Felonies</strong><span>1.1 to 1.12</span></a>
-      <a class="tile tone-blue" href="violations.html#infractions"><span class="time">10 min</span><strong>Infractions</strong><span>2.1 to 2.7</span></a>
-      <a class="tile tone-green" href="violations.html#misdemeanors"><span class="time">5 min</span><strong>Misdemeanors</strong><span>3.1 to 3.6</span></a>
-      <a class="tile tone-gold" href="rules.html"><strong>PD Rules</strong><span>16 rules and the disciplinary system</span></a>
-      <a class="tile tone-cyan" href="gallery.html"><strong>Pictures</strong><span>All 10 posters to view and download</span></a>
-    </div>
+<section class="band band-alt xcta" aria-labelledby="cta-title">
+  <div class="xcta-glow" aria-hidden="true"></div>
+  <div class="wrap xcta-inner">
+    <img src="images/crops/hero.jpg" alt="PDU, Professional Development Unit banner" width="1206" height="255" class="xcta-banner" loading="lazy">
+    <h2 id="cta-title">Ready to earn your badge?</h2>
+    <p>Start with your macros. Everything else follows.</p>
+    <div class="xhero-actions"><a class="btn" href="macros.html?new=1">New to PD? Start here <span class="arrow" aria-hidden="true">&rarr;</span></a><a class="btn btn-ghost" href="quiz.html">Test yourself</a></div>
   </div>
 </section>
 </main>
@@ -139,6 +205,8 @@
   <div class="viewer-scroll"><img id="viewer-img" alt=""></div>
 </dialog>
 
-<script src="assets/site.js?v=202611250600"></script>
+<script src="assets/data.js?v=202611250715"></script>
+<script src="assets/site.js?v=202611250715"></script>
+<script src="assets/home.js?v=202611250715"></script>
 </body>
 </html>
